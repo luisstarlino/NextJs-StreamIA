@@ -59,7 +59,7 @@ export const createUser = internalMutation({
             email: args.email,
             imageUrl: args.imageUrl,
             name: args.name
-        })
+        }).catch(()=> console.debug("DEU ERRO AQUI TAMBÉM.."))
     }
 })
 

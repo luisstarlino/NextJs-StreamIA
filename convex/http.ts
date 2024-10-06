@@ -39,7 +39,7 @@ const handleClerkWebhook = httpAction(async (ctx, request) => {
 
 const http = httpRouter();
 http.route({
-    path: "/clerk-users-webhook",
+    path: "/clerk",
     method: "POST",
     handler: handleClerkWebhook,
 });
@@ -54,7 +54,7 @@ async function validateRequest(
         "svix-timestamp": req.headers.get("svix-timestamp")!,
         "svix-signature": req.headers.get("svix-signature")!,
     };
-    const wh = new Webhook(process.env.CLERK_KEY as string);
+    const wh = new Webhook(process.env.CLERK_WEBHOOK_SECRET!);
     let evt: Event | null = null;
     try {
         evt = wh.verify(payloadString, svixHeaders) as Event;
