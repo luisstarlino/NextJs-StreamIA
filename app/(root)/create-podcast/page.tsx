@@ -19,6 +19,10 @@ import { string, z } from "zod"
 import { cn } from "@/lib/utils"
 import { useState } from "react"
 import { Textarea } from "@/components/ui/textarea"
+import GeneratePodcast from "@/components/GeneratePodcast"
+import GenerateThumbnail from "@/components/GenerateThumbnail"
+import { Loader } from "lucide-react"
+import { Id } from "@/convex/_generated/dataModel"
 
 
 //------------------------------------------------
@@ -27,21 +31,35 @@ import { Textarea } from "@/components/ui/textarea"
 const openIaVoices = ['allow', 'shimmer', 'nova', 'echo', 'fable', 'onyx'];
 
 const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
+  title: z.string().min(2),
+  description: z.string().min(2),
 })
 
 const CreatePodcast = () => {
 
-  const [voiceType, setVoiceType] = useState<string | null>(null);
+  //------------------------------------------------
+  // --- CONST'S
+  //------------------------------------------------
+  const [imageStorageId, setImageStorageId] = useState<Id<"_storage"> | null>(null);
+  const [imagePrompt, setImagePrompt] = useState<string>("");
+  const [imageUrl, setImageUrl] = useState<string>("");
 
+  const [audioStorageId, setAudioStorageId] = useState<Id<"_storage"> | null>(null);
+  const [audioDuration, setAudioDuration] = useState<number>(0);
+  const [audioUrl, setAudioUrl] = useState<string>("");
+
+
+  const [voiceType, setVoiceType] = useState<string | null>(null);
+  const [voicePrompt, setVoicePrompt] = useState<string>("")
+
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
+      title: "",
+      description: ""
     },
   })
 
@@ -109,6 +127,25 @@ const CreatePodcast = () => {
             />
           </div>
 
+          <div className="flex flex-col pt-10">
+            {/* Generate Podcast */}
+            <GeneratePodcast />
+
+            {/* Generate Thumbnail */}
+            <GenerateThumbnail />
+
+            <div className="mt-10 w-full">
+              <Button type="submit" className="text-16 w-full bg-orange-1 py-4 font-extrabold text-white-1 transition-all duration-500 hover:bg-black-1 hover:border-orange-1">
+                {isSubmitting ?
+                  <>
+                    Sending <Loader size={20} className="animate-spin mr-l" />
+                  </> :
+                  "Submit & Publish Podcast"
+                }
+              </Button>
+            </div>
+
+          </div>
         </form>
       </Form>
     </section>
