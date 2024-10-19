@@ -6,10 +6,13 @@
 //------------------------------------------------
 // IMPORTS
 //------------------------------------------------
+import RightSideBar from "@/components/RightSideBar";
+import { Toaster } from "@/components/ui/toaster"
 import LeftSideBar from "@/components/LeftSideBar";
 import MobileNav from "@/components/MobileNav";
-import RightSideBar from "@/components/RightSideBar";
 import Image from "next/image";
+
+
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
     return (
@@ -23,19 +26,20 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                     <div className="mx-auto flex w-full max-w-5xl flex-col max-sm:px-4">
                         {/* MobileNav */}
                         <div className="flex h-16 items-center justify-between md:hidden">
-                            <Image src={'/icons/logo.svg'} alt="Menu Icon" width={30} height={30}  />
-                            <MobileNav/>
+                            <Image src={'/icons/logo.svg'} alt="Menu Icon" width={30} height={30} />
+                            <MobileNav />
                         </div>
 
                         <div className="flex flex-col md:pb-14">
-                            Toaster (notification popup)
+                            <Toaster />
+
                             {children}
                         </div>
                     </div>
                 </section>
 
                 {/* Right SideBar */}
-                <RightSideBar/>
+                <RightSideBar />
             </main>
         </div>
     );
