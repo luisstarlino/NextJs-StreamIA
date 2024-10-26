@@ -9,7 +9,8 @@ import React from 'react'
 
 const Home = () => {
 
-  // const tasks = useQuery(api.tasks.get);
+  const trendingPodcasts = useQuery(api.podcasts.getTrendingPodcasts);
+
 
 
 
@@ -18,18 +19,15 @@ const Home = () => {
       <section className='flex flex-col gap-5'>
         <h1 className='text-20 font-bold text-white-1'>Trending Podcast</h1>
 
-        {/* <div className="flex min-h-screen flex-col items-center justify-between p-24 text-white-1">
-          {tasks?.map(({ _id, text }) => <div key={_id}>{text}</div>)}
-        </div> */}
 
         <div className='podcast_grid'>
-          {podcastData.map(({ id, description, imgURL, title }) => (
+          {trendingPodcasts?.map(({ _id, description, imageUrl, title }) => (
             <PodcastCard
-              key={id}
-              imgUrl={imgURL}
+              key={_id}
+              imgUrl={imageUrl!}
               title={title}
-              desc={description}
-              podcastId={id}
+              description={description}
+              podcastId={_id}
             />
           ))}
         </div>
