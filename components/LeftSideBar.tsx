@@ -22,8 +22,8 @@ const LeftSideBar = () => {
     //------------------------------------------------
     // CONST'S
     //------------------------------------------------
-    const pathName = usePathname();
     const { signOut } = useClerk();
+    const pathName = usePathname();
     const router = useRouter();
 
 

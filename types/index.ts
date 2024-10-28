@@ -90,7 +90,6 @@ export interface PodcastDetailPlayerProps {
     audioStorageId?: Id<"_storage"> | undefined;
     authorImageUrl: string;
     authorId: string;
-
 }
 
 export interface AudioProps {
@@ -128,3 +127,23 @@ export type UseDotButtonType = {
     scrollSnaps: number[];
     onDotButtonClick: (index: number) => void;
 };
+
+
+//------------------------------------------------
+// --- PROFILE CARD PROPS
+//------------------------------------------------
+export interface ProfileDetailPlayerProps {
+    randomPodcast: {
+        audioUrl?: string | undefined;
+        title: string;
+        imageUrl?: string | undefined;
+        author: string;
+        podcastId: Id<"podcasts">;
+    }
+    imageStorageId?: string | undefined;
+    fullName: string | undefined;
+    profile_id: Id<"users">;
+    isMyProfile: boolean;
+    listeners: number;
+    authorId: string;
+}
