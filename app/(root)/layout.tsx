@@ -11,6 +11,7 @@ import { Toaster } from "@/components/ui/toaster"
 import LeftSideBar from "@/components/LeftSideBar";
 import MobileNav from "@/components/MobileNav";
 import Image from "next/image";
+import PodcastPlayer from "@/components/PodcastPlayer";
 
 
 
@@ -41,6 +42,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                 {/* Right SideBar */}
                 <RightSideBar />
             </main>
+
+            {/* Player in the entire application */}
+            <PodcastPlayer />
         </div>
     );
 }

@@ -90,14 +90,14 @@ export interface PodcastDetailPlayerProps {
     audioStorageId?: Id<"_storage"> | undefined;
     authorImageUrl: string;
     authorId: string;
-   
+
 }
 
 export interface AudioProps {
     title: string;
-    audioUrl: string;
+    audioUrl: string | undefined;
     author: string;
-    imageUrl: string;
+    imageUrl: string | undefined;
     podcastId: string;
 }
 
