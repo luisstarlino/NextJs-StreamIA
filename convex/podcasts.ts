@@ -1,5 +1,8 @@
 import { ConvexError, v } from "convex/values";
 import { mutation, query } from "./_generated/server";
+import { Id } from "./_generated/dataModel";
+import { useQuery } from "convex/react";
+import { api } from "./_generated/api";
 
 export const getUrl = mutation({
     args: {
@@ -21,7 +24,7 @@ export const createPodcast = mutation({
         voicePrompt: v.string(),
         views: v.number(),
         audioDuration: v.number(),
-        // categoryId: v.id("categories"),
+        categoryId: v.id("categories"),
         audioStorageId: v.id("_storage"),
         imageStorageId: v.id("_storage")
     },
@@ -100,7 +103,22 @@ export const getPodcastByAuthorId = query({
             0
         );
 
-        return { podcasts, listeners: totalListeners };
+
+        let allCategories: any[] = [];
+
+        for (const p of podcasts) {
+            if (allCategories.find((c) => c?._id === p.categoryId) === undefined) {
+
+                // --- Find the name of this category
+                const categoryDetails = await ctx.db.query("categories").filter((q) => q.eq(q.field("_id"), p.categoryId)).unique();
+
+                if (categoryDetails) {
+                    allCategories.push(categoryDetails);
+                }
+            }
+        }
+
+        return { podcasts, listeners: totalListeners, categories: allCategories };
     },
 });
 
@@ -175,5 +193,27 @@ export const deletePodcast = mutation({
         await ctx.storage.delete(args.imageStorageId!);
         await ctx.storage.delete(args.audioStorageId!);
         return await ctx.db.delete(args.podcastId);
+    },
+});
+
+
+/*****************************************************************************************
+ * @Author: Luis Starlino
+ * @Date: 2024-12-14 08:00
+ * @Description: Get all views informations to show in the system
+ *****************************************************************************************/
+export const getAllPodcastsViews = query({
+    handler: async (ctx) => {
+
+        // --- Get all
+        const allP = await ctx.db.query("podcasts").order("desc").collect();
+
+        return allP.map((p) => ({
+            _creationTime: p._creationTime,
+            audioDuration: p.audioDuration,
+            podcastTitle: p.title,
+            views: p.views,
+            _id: p._id,
+        }));
     },
 });

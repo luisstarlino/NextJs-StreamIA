@@ -17,26 +17,47 @@ import LoaderSpinner from "@/components/LoaderSpinner";
 import EmptyState from "@/components/EmptyState";
 import { useUser } from "@clerk/nextjs";
 import ProfileDetailPlayer from "@/components/profile/ProfileDetailsPlayer";
+import FilterBy from "@/components/core/FilterBy";
+import PodcastCard from "@/components/PodcastCard";
+import { PodcastProps } from "@/types";
+import { Id } from "@/convex/_generated/dataModel";
+import { getRandomInt } from "@/lib/utils";
 
 const ProfileDetails = ({ params: { profile_id } }: { params: { profile_id: string } }) => {
 
     //------------------------------------------------
     // --- CONST'S
     //------------------------------------------------
-    const userData = useQuery(api.users.getUserById, { clerkId: profile_id });
     const allPodcasts = useQuery(api.podcasts.getPodcastByAuthorId, { authorId: profile_id });
+    const userData = useQuery(api.users.getUserById, { clerkId: profile_id });
     const { toast } = useToast(); // --- Toast Messages
     const { user } = useUser();
+
+    //------------------------------------------------
+    // --- SEARCH ENGINE
+    //------------------------------------------------
+    const [searchValue, setSearchValue] = useState<string>("");
+    const [filterList, setFilterList] = useState<any>();
+
+    
+    useEffect(() => {
+
+        if (searchValue === "") return setFilterList(allPodcasts?.podcasts);
+
+        let applyFilter = allPodcasts?.podcasts.filter((p) => p.categoryId == searchValue);
+        setFilterList(applyFilter);
+    }, [searchValue]);
+
+    useEffect(() => {
+        if (!filterList) setFilterList(allPodcasts?.podcasts);
+    }, [allPodcasts?.podcasts]);
 
 
     //------------------------------------------------
     // --- HANDLE PROFILE
     //------------------------------------------------
     const isMyProfile = user?.id == userData?.clerkId;
-    const randomPodcast = allPodcasts?.podcasts[0]; // TODO: MAKE THIS FUNCTION RANDOM
-
-    console.log(randomPodcast);
-
+    const randomPodcast = allPodcasts?.podcasts[getRandomInt(allPodcasts?.podcasts?.length)];
 
     return (
         <section className='flex w-full flex-col'>
@@ -67,6 +88,44 @@ const ProfileDetails = ({ params: { profile_id } }: { params: { profile_id: stri
                 listeners={allPodcasts?.listeners ?? 0}
                 profile_id={userData?._id!}
             />
+
+            {/* ALL PODCASTS FROM THIS USER */}
+            <section className='mt-14 flex flex-col gap-5'>
+                <hr />
+
+                {/* Name and Select By Category */}
+                <div className="flex items-center justify-between">
+                    <h1 className='text-20 font-bold text-white-1'>All</h1>
+                    <FilterBy
+                        data={allPodcasts?.categories!}
+                        handleSearch={(t) => setSearchValue(t)}
+                        valueSearch={searchValue}
+                    />
+                </div>
+
+                
+                {filterList?.length! > 0 ?
+
+                    <div className='podcast_grid'>
+                        {filterList?.map(({ _id, description, imageUrl, title }: {
+                            _id: Id<"podcasts">, description: string, imageUrl: string, title: string
+                        }) => (
+                            <PodcastCard
+                                key={_id}
+                                imgUrl={imageUrl!}
+                                title={title}
+                                description={description}
+                                podcastId={_id}
+                            />
+                        ))}
+                    </div>
+                    :
+                    <EmptyState title="No podcasts found1" search={false} />
+                }
+
+
+
+            </section>
 
         </section>
     )

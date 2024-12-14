@@ -17,11 +17,14 @@ import { cn } from "@/lib/utils";
 import { useAudio } from "@/providers/AudioProvider";
 
 import { Progress } from "./ui/progress";
+import { useMutation } from "convex/react";
+import { api } from "@/convex/_generated/api";
 
 const PodcastPlayer = () => {
     //------------------------------------------------
     // --- CONST'S
     //------------------------------------------------
+    const updateCountPodcast = useMutation(api.podcasts.updatePodcastViews);
     const [currentTime, setCurrentTime] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
     const audioRef = useRef<HTMLAudioElement>(null);
@@ -29,7 +32,11 @@ const PodcastPlayer = () => {
     const [duration, setDuration] = useState(0);
     const { audio } = useAudio();
 
-    const togglePlayPause = () => {
+    const togglePlayPause = async () => {
+
+        if (duration > 0 && duration === currentTime) await updateCountPodcast({ podcastId: audio?.podcastId! });
+
+
         if (audioRef.current?.paused) {
             audioRef.current?.play();
             setIsPlaying(true);
@@ -66,6 +73,7 @@ const PodcastPlayer = () => {
     };
 
     useEffect(() => {
+
         const updateCurrentTime = () => {
             if (audioRef.current) {
                 setCurrentTime(audioRef.current.currentTime);
@@ -95,6 +103,7 @@ const PodcastPlayer = () => {
             setIsPlaying(true);
         }
     }, [audio]);
+
     const handleLoadedMetadata = () => {
         if (audioRef.current) {
             setDuration(audioRef.current.duration);

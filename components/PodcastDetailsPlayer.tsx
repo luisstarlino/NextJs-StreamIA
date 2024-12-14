@@ -15,7 +15,7 @@ import { useState } from "react";
 import { api } from "@/convex/_generated/api";
 import { useAudio } from '@/providers/AudioProvider';
 import { PodcastDetailPlayerProps } from "@/types";
-
+import hotToast from "react-hot-toast";
 import LoaderSpinner from "./LoaderSpinner";
 import { Button } from "./ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -37,6 +37,7 @@ const PodcastDetailPlayer = ({
   const { toast } = useToast();
   const [isDeleting, setIsDeleting] = useState(false);
   const deletePodcast = useMutation(api.podcasts.deletePodcast);
+  const updateCountPodcast = useMutation(api.podcasts.updatePodcastViews);
 
   const handleDelete = async () => {
     try {
@@ -54,6 +55,14 @@ const PodcastDetailPlayer = ({
     }
   };
 
+  const handleUpdateCountPodcast = async () => {
+    try {
+      await updateCountPodcast({ podcastId: podcastId });
+    } catch (error: any) {
+      hotToast.error(error?.toString());
+    }
+  }
+
   const handlePlay = () => {
     setAudio({
       title: title,
@@ -62,6 +71,9 @@ const PodcastDetailPlayer = ({
       author,
       podcastId,
     });
+
+    // --- COUNT VIEW's
+    handleUpdateCountPodcast();
   };
 
   if (!imageUrl || !authorImageUrl) return <LoaderSpinner />;

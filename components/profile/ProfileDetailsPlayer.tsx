@@ -145,7 +145,7 @@ const ProfileDetailPlayer = (p: ProfileDetailPlayerProps) => {
                                 height={16}
                                 alt="Delete icon"
                             />
-                            <h2 className="text-16 font-normal text-white-1">Share Profile</h2>
+                            <h2 className="text-16 font-normal text-white-1">Delete my Profile</h2>
                         </section>
 
 

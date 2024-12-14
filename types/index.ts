@@ -97,7 +97,7 @@ export interface AudioProps {
     audioUrl: string | undefined;
     author: string;
     imageUrl: string | undefined;
-    podcastId: string;
+    podcastId: Id<"podcasts">;
 }
 
 export interface AudioContextType {
@@ -129,6 +129,17 @@ export type UseDotButtonType = {
 };
 
 
+/*
+* *********************************************************************
+* --- ONLY TABLE COMPONETS BELLOW
+* *********************************************************************
+* */
+
+//------------------------------------------------
+// --- PODCAST PROPS 
+//------------------------------------------------
+
+
 //------------------------------------------------
 // --- PROFILE CARD PROPS
 //------------------------------------------------
@@ -146,4 +157,20 @@ export interface ProfileDetailPlayerProps {
     isMyProfile: boolean;
     listeners: number;
     authorId: string;
+}
+
+//------------------------------------------------
+// --- CATEGORY CARD PROPS
+//------------------------------------------------
+export interface FilterByCategories {
+    data: CategoryProps[];
+    handleSearch: (t: string) => void;
+    valueSearch: string;
+}
+
+export interface CategoryProps {
+    name: string;
+    description: string;
+    _id: Id<"categories">;
+    _creationTime: number;
 }

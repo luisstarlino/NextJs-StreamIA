@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import ConvexClerkProvider from "@/providers/ConvexClerkProvider";
 import AudioProvider from "@/providers/AudioProvider";
+import DialogSystem from "@/components/core/DialogSystem";
+import { ToasterProvider } from "@/providers/ToasterProvicer";
 
 
 const geistSans = localFont({
@@ -34,6 +36,8 @@ export default function RootLayout({
       <html lang="en">
         <AudioProvider>
           <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+            <ToasterProvider />
+            <DialogSystem />
             {children}
           </body>
         </AudioProvider>

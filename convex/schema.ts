@@ -34,5 +34,6 @@ export default defineSchema({
     categories: defineTable({
         name: v.string(),
         description: v.string(),
+        createdBy: v.optional(v.id('users')),
     })
 })
