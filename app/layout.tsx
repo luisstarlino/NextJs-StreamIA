@@ -5,6 +5,7 @@ import ConvexClerkProvider from "@/providers/ConvexClerkProvider";
 import AudioProvider from "@/providers/AudioProvider";
 import DialogSystem from "@/components/core/DialogSystem";
 import { ToasterProvider } from "@/providers/ToasterProvicer";
+import LoadingPageProvider from "@/providers/LoadingProvider";
 
 
 const geistSans = localFont({
@@ -36,6 +37,7 @@ export default function RootLayout({
       <html lang="en">
         <AudioProvider>
           <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+            <LoadingPageProvider/>
             <ToasterProvider />
             <DialogSystem />
             {children}

@@ -17,7 +17,7 @@ import { Label } from "@/components/ui/label"
 import { useForm } from "react-hook-form"
 import { string, z } from "zod"
 import { cn } from "@/lib/utils"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Textarea } from "@/components/ui/textarea"
 import GeneratePodcast from "@/components/GeneratePodcast"
 import GenerateThumbnail from "@/components/GenerateThumbnail"
@@ -27,6 +27,7 @@ import { toast } from "@/hooks/use-toast"
 import { useAction, useMutation, useQuery } from "convex/react"
 import { api } from "@/convex/_generated/api"
 import { useRouter } from "next/navigation";
+import useLoadingPage from "@/hooks/use-loading";
 
 
 //------------------------------------------------
@@ -42,6 +43,12 @@ const formSchema = z.object({
 
 const CreatePodcast = () => {
   const router = useRouter();
+
+  const loadingController = useLoadingPage();
+
+  useEffect(() => {
+    if (loadingController.isOpen) return loadingController.onClose();
+  }, [])
   //------------------------------------------------
   // --- CONST'S
   //------------------------------------------------

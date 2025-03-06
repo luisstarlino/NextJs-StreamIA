@@ -6,8 +6,9 @@
 //------------------------------------------------
 // --- IMPORT'S
 //------------------------------------------------
-import { PodcastCardProps } from '@/types';
+import useLoadingPage from "@/hooks/use-loading";
 import { useRouter } from 'next/navigation';
+import { PodcastCardProps } from '@/types';
 import Image from 'next/image';
 import React from 'react'
 
@@ -17,12 +18,15 @@ const PodcastCard = ({ imgUrl, title, description, podcastId }: PodcastCardProps
     // --- CONST'S
     //------------------------------------------------
     const router = useRouter();
+    const loadingController = useLoadingPage();
 
     //------------------------------------------------
     // --- HANDLE VIEW
     //------------------------------------------------
     const handleViews = async () => {
+
         // --- increase views
+        loadingController.onOpen();
 
         // --- Go to details
         router.push(`/podcast/${podcastId}`, {

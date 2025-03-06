@@ -8,19 +8,23 @@
 //------------------------------------------------
 // --- IMPORT'S
 //------------------------------------------------
-import { Id } from '@/convex/_generated/dataModel'
-import { api } from '@/convex/_generated/api'
-import { useQuery } from 'convex/react'
-import Image from 'next/image'
-import React from 'react'
 import PodcastDetailsPlayer from '@/components/PodcastDetailsPlayer';
 import LoaderSpinner from '@/components/LoaderSpinner';
+import { Id } from '@/convex/_generated/dataModel';
 import PodcastCard from '@/components/PodcastCard';
 import EmptyState from '@/components/EmptyState';
+import useLoadingPage from "@/hooks/use-loading";
+import { api } from '@/convex/_generated/api';
 import { useUser } from '@clerk/nextjs';
+import { useQuery } from 'convex/react';
+import React, { useEffect } from 'react';
+import Image from 'next/image';
+
 
 const PodcastDetails = ({ params: { podcast_id } }: { params: { podcast_id: Id<"podcasts"> } }) => {
+
     const { user } = useUser();
+    const loadingController = useLoadingPage();
 
     //------------------------------------------------
     // --- CONST'S
@@ -29,7 +33,14 @@ const PodcastDetails = ({ params: { podcast_id } }: { params: { podcast_id: Id<"
     const podcast = useQuery(api.podcasts.getPodcastById, { podcastId: podcast_id })
     const isOwner = user?.id == podcast?.authorId;
 
-    if (!similarPodcasts || !podcast) return <LoaderSpinner />
+    useEffect(() => {
+        if (loadingController.isOpen === true) {
+            loadingController.onClose();
+        }
+    }, [])
+
+    
+    if (!similarPodcasts || !podcast) return <></>
 
 
     return (

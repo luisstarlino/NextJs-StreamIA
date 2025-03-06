@@ -13,8 +13,9 @@ import LoaderSpinner from '@/components/LoaderSpinner';
 import PodcastCard from '@/components/PodcastCard';
 import SearchBar from '@/components/SearchBar';
 import { api } from '@/convex/_generated/api';
+import useLoadingPage from '@/hooks/use-loading';
 import { useQuery } from 'convex/react';
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const Discover = ({ searchParams: { search } }: {
   searchParams: {
@@ -28,6 +29,12 @@ const Discover = ({ searchParams: { search } }: {
   const podcastsData = useQuery(api.podcasts.getPodcastBySearch, {
     search: search || ""
   });
+
+  const loadingController = useLoadingPage();
+
+  useEffect(() => {
+    if (loadingController.isOpen) return loadingController.onClose();
+  }, [])
 
   return (
     <div className='flex flex-col gap-9'>

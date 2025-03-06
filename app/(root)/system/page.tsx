@@ -13,7 +13,8 @@ import Image from 'next/image';
 //------------------------------------------------
 // IMPORTS
 //------------------------------------------------
-import React from 'react'
+import React, { useEffect } from 'react'
+import useLoadingPage from '@/hooks/use-loading';
 
 const System = () => {
 
@@ -21,6 +22,16 @@ const System = () => {
     // IMPORTS
     //------------------------------------------------
     const router = useRouter();
+    const loadingController = useLoadingPage();
+
+    useEffect(() => {
+        if (loadingController.isOpen) return loadingController.onClose();
+    }, [])
+
+    const sendTo = (link: string) => {
+        loadingController.onOpen();
+        router.push(link)
+    }
 
 
     const dummyOpts = [
@@ -54,13 +65,13 @@ const System = () => {
 
                         <Card
                             key={o.id}
-                            onClick={() => router.push(o.link)}
+                            onClick={() => sendTo(o.link)}
                             className="p-10 bg-orange-1 border-none hover:bg-white-1 transition-all cursor-pointer hover:text-orange-1 text-white-1"
                         >
                             <figure>
                                 {/* <Image src={'/icons/system/category.png'} width={100} height={100} alt={o.title} className='aspect-square h-fit w-full rounded-xl 2xl:size-[200px] object-contain'/> */}
                                 <div className='flex flex-col items-center gap-3'>
-                                    <o.icon/>
+                                    <o.icon />
                                     <h1 className='text-16 truncate font-bold'>{o.title}</h1>
                                     <h2 className='text-12 truncate font-normal capitalize'>{o.desc}</h2>
                                 </div>

@@ -18,6 +18,7 @@ import { useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import LoaderSpinner from './LoaderSpinner';
 import { useRouter } from 'next/navigation';
+import useLoadingPage from '@/hooks/use-loading';
 
 const RightSideBar = () => {
 
@@ -25,21 +26,27 @@ const RightSideBar = () => {
   // --- CONST'S
   //------------------------------------------------
   const topPodcasters = useQuery(api.users.getTopUserByPodcastCount);
+  const loadingController = useLoadingPage();
   const router = useRouter();
   const { user } = useUser();
+
+  const sendTo = (link: string) => {
+    loadingController.onOpen();
+    router.push(link);
+  }
 
   if (!topPodcasters) return <LoaderSpinner />
 
   return (
     <section className='right_sidebar text-white-1'>
       <SignedIn>
-        <Link href={`profile/${user?.id}`} className='flex gap-3 pb-12'>
+        <div className='flex gap-3 pb-12 cursor-pointer' onClick={() => sendTo(`${window.location.href.includes("profile") ? user?.id : `profile/${user?.id}`}`)}>
           <UserButton />
           <div className='flex w-full items-center justify-between'>
             <h1 className='text-16 truncate font-semibold text-white-1'>{user?.firstName} {user?.lastName}</h1>
             <Image src={'/icons/right-arrow.svg'} alt='arrow' height={24} width={24} />
           </div>
-        </Link>
+        </div>
       </SignedIn>
       <section>
         <Header headerTitle={"Fans Like you"} />

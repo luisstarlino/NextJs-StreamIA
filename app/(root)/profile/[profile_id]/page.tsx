@@ -22,6 +22,7 @@ import PodcastCard from "@/components/PodcastCard";
 import { PodcastProps } from "@/types";
 import { Id } from "@/convex/_generated/dataModel";
 import { getRandomInt } from "@/lib/utils";
+import useLoadingPage from "@/hooks/use-loading";
 
 const ProfileDetails = ({ params: { profile_id } }: { params: { profile_id: string } }) => {
 
@@ -30,6 +31,7 @@ const ProfileDetails = ({ params: { profile_id } }: { params: { profile_id: stri
     //------------------------------------------------
     const allPodcasts = useQuery(api.podcasts.getPodcastByAuthorId, { authorId: profile_id });
     const userData = useQuery(api.users.getUserById, { clerkId: profile_id });
+    const loadingController = useLoadingPage();
     const { toast } = useToast(); // --- Toast Messages
     const { user } = useUser();
 
@@ -38,6 +40,11 @@ const ProfileDetails = ({ params: { profile_id } }: { params: { profile_id: stri
     //------------------------------------------------
     const [searchValue, setSearchValue] = useState<string>("");
     const [filterList, setFilterList] = useState<any>();
+
+
+     useEffect(() => {
+        if (loadingController.isOpen) return loadingController.onClose();
+      }, []);
 
     
     useEffect(() => {

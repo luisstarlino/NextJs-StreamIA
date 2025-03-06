@@ -205,15 +205,55 @@ export const deletePodcast = mutation({
 export const getAllPodcastsViews = query({
     handler: async (ctx) => {
 
-        // --- Get all
+        // ===== GET ALL PODCASTS
         const allP = await ctx.db.query("podcasts").order("desc").collect();
 
-        return allP.map((p) => ({
+        // ===== GET ALL CATEGORIES
+        const allC = await ctx.db.query("categories").order("desc").collect();
+
+        // ===== FETCH LIKE A DICTIONARY (key: value)
+        const categoryMap = Object.fromEntries(allC.map(cat => [cat._id, cat.name]));
+
+
+
+
+        // ===== SEPARE BY CATEGORY AND COUNT
+        var categories: { categoryName: string, categoryId: Id<"categories">, views: number }[] = [];
+
+        allP.forEach(async (p) => {
+
+            var findIndexC = categories.findIndex(c => c.categoryId == p.categoryId);
+
+            if (findIndexC == -1) {
+
+                categories.push({
+                    categoryId: p.categoryId!,
+                    views: p.views,
+                    categoryName: categoryMap[p.categoryId!]
+                })
+            } else {
+                categories[findIndexC].views += p.views
+            }
+        })
+
+        categories = categories.sort((a, b) => b.views - a.views);
+
+
+
+        // ===== MODEL TO RETURN
+        let viewTableModel = allP.map((p) => ({
             _creationTime: p._creationTime,
             audioDuration: p.audioDuration,
             podcastTitle: p.title,
             views: p.views,
             _id: p._id,
-        }));
+            categoryId: p.categoryId
+        })).sort((a, b) => b.views - a.views);
+
+
+
+        return { table: viewTableModel, categoryChart: categories };
+
+
     },
 });

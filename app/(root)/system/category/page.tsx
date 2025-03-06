@@ -13,9 +13,10 @@ import { DataTable } from '@/components/table/Databable';
 import LoaderSpinner from '@/components/LoaderSpinner';
 import { api } from '@/convex/_generated/api';
 import { useQuery } from 'convex/react';
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
+import useLoadingPage from '@/hooks/use-loading';
 
 
 const CategoryPage = () => {
@@ -25,6 +26,17 @@ const CategoryPage = () => {
   //------------------------------------------------
   const categories = useQuery(api.categories.getAllCategories);
   const router = useRouter();
+
+  const loadingController = useLoadingPage();
+
+  useEffect(() => {
+    if (loadingController.isOpen) return loadingController.onClose();
+  }, [])
+
+  const sendTo = (link: string) => {
+    loadingController.onOpen();
+    router.push(link)
+  }
 
   if (!categories) return <LoaderSpinner />;
 
@@ -36,7 +48,7 @@ const CategoryPage = () => {
           <Button className='text-16 text-black-2 border-white-1 border-2 bg-white-1 hover:bg-transparent hover:text-white-1 hover:transition-colors'
             variant={"default"}
             size={"lg"}
-            onClick={()=> router.push('/system')}
+            onClick={() => sendTo('/system')}
           >
             BACK TO SYSTEM
           </Button>

@@ -10,6 +10,7 @@
 //------------------------------------------------
 import { SignedOut, SignedIn, useClerk } from '@clerk/nextjs';
 import { usePathname, useRouter } from 'next/navigation';
+import useLoadingPage from "@/hooks/use-loading";
 import { sidebarLinks } from '@/constants';
 import { Button } from './ui/button';
 import { cn } from '@/lib/utils';
@@ -22,9 +23,16 @@ const LeftSideBar = () => {
     //------------------------------------------------
     // CONST'S
     //------------------------------------------------
+    const loadingController = useLoadingPage();
     const { signOut } = useClerk();
     const pathName = usePathname();
     const router = useRouter();
+
+    const sendTo = (link: string) => {
+        loadingController.onOpen();
+        router.push(link)
+
+    }
 
 
     return (
@@ -34,7 +42,7 @@ const LeftSideBar = () => {
                 {/* ICON */}
                 <Link href={'/'} className='flex cursor-pointer items-center gap-1 pb-10 max-lg:justify-center'>
                     <Image src={'/icons/logo.svg'} alt='logo' width={23} height={27} />
-                    <h1 className='text-34 text-white font-extrabold max-lg:hidden'>Stream IA</h1>
+                    <h1 className='text-34 text-white font-extrabold max-lg:hidden'>Stream AI</h1>
                 </Link>
 
                 {/* Routes */}
@@ -43,15 +51,15 @@ const LeftSideBar = () => {
                     let isActive = pathName === route || pathName.startsWith(`${route}/`)
 
                     return (
-                        <Link href={route} key={label}
+                        <div onClick={()=> sendTo(route)} key={label}
                             className={
-                                cn('flex gap-3 items-center py-4 max-lg:px-4 justify-center lg:justify-start',
+                                cn('flex gap-3 items-center py-4 max-lg:px-4 justify-center lg:justify-start cursor-pointer',
                                     { 'bg-nav-focus border-r-4 border-orange-1': isActive } // --- Do something, is is Active!!
                                 )}
                         >
                             <Image src={imgURL} alt={label} width={24} height={24} />
                             <p>{label}</p>
-                        </Link>
+                        </div>
                     )
                 })}
             </nav>
@@ -64,7 +72,7 @@ const LeftSideBar = () => {
             </SignedOut>
             <SignedIn>
                 <div className='flex-center w-full pb-14 max-lg:px-4 lg:pr-8'>
-                    <Button className='text-16 w-full bg-orange-1 font-extrabold' onClick={() => signOut(()=> router.push('/'))}>
+                    <Button className='text-16 w-full bg-orange-1 font-extrabold' onClick={() => signOut(() => sendTo('/'))}>
                         Log out
                     </Button>
                 </div>
