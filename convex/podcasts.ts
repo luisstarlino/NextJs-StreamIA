@@ -162,16 +162,20 @@ export const getPodcastBySearch = query({
 
 export const updatePodcastViews = mutation({
     args: {
-        podcastId: v.id("podcasts"),
+        podcastId: v.string(),
     },
     handler: async (ctx, args) => {
-        const podcast = await ctx.db.get(args.podcastId);
+
+        const podcast = await ctx.db
+        .query("podcasts")
+        .filter((q) => q.eq(q.field("_id"), args.podcastId))
+        .unique();
 
         if (!podcast) {
             throw new ConvexError("Podcast not found");
         }
 
-        return await ctx.db.patch(args.podcastId, {
+        return await ctx.db.patch(podcast._id, {
             views: podcast.views + 1,
         });
     },
