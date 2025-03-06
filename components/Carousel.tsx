@@ -6,7 +6,7 @@
 //------------------------------------------------
 // --- IMPORT'S
 //------------------------------------------------
-import { EmblaOptionsType, EmblaCarouselType } from 'embla-carousel'
+import { EmblaCarouselType } from 'embla-carousel'
 import { DotButton, useDotButton } from './EmblaCarouselDotButton'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'

@@ -7,7 +7,6 @@ import { Loader } from 'lucide-react'
 import { useAction, useMutation } from 'convex/react'
 import { api } from '@/convex/_generated/api'
 import { v4 as uuidV4 } from 'uuid';
-import { generateUploadUrl } from '@/convex/files';
 import { useToast } from "@/hooks/use-toast"
 import { useUploadFiles } from '@xixixao/uploadstuff/react';
 

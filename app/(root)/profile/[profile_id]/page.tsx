@@ -9,17 +9,13 @@
 // --- IMPORT'S
 //------------------------------------------------
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
-import { useToast } from "@/hooks/use-toast"
-import LoaderSpinner from "@/components/LoaderSpinner";
 import EmptyState from "@/components/EmptyState";
 import { useUser } from "@clerk/nextjs";
 import ProfileDetailPlayer from "@/components/profile/ProfileDetailsPlayer";
 import FilterBy from "@/components/core/FilterBy";
 import PodcastCard from "@/components/PodcastCard";
-import { PodcastProps } from "@/types";
 import { Id } from "@/convex/_generated/dataModel";
 import { getRandomInt } from "@/lib/utils";
 import useLoadingPage from "@/hooks/use-loading";
@@ -31,8 +27,7 @@ const ProfileDetails = ({ params: { profile_id } }: { params: { profile_id: stri
     //------------------------------------------------
     const allPodcasts = useQuery(api.podcasts.getPodcastByAuthorId, { authorId: profile_id });
     const userData = useQuery(api.users.getUserById, { clerkId: profile_id });
-    const loadingController = useLoadingPage();
-    const { toast } = useToast(); // --- Toast Messages
+    const loadingController = useLoadingPage();    
     const { user } = useUser();
 
     //------------------------------------------------
@@ -51,7 +46,7 @@ const ProfileDetails = ({ params: { profile_id } }: { params: { profile_id: stri
 
         if (searchValue === "") return setFilterList(allPodcasts?.podcasts);
 
-        let applyFilter = allPodcasts?.podcasts.filter((p) => p.categoryId == searchValue);
+        const applyFilter = allPodcasts?.podcasts.filter((p) => p.categoryId == searchValue);
         setFilterList(applyFilter);
     }, [searchValue]);
 

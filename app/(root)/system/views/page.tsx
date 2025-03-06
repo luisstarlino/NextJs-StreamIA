@@ -17,7 +17,6 @@ import { DataTable } from "@/components/table/Databable";
 import { columnsViews } from "@/types/tables/columnsViews";
 import { ChartContainer, type ChartConfig, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from "@/components/ui/chart"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { useMemo } from "react";
 
 const ViewsListPage = () => {
 
@@ -105,10 +104,6 @@ const ViewsListPage = () => {
                 color: "hsl(var(--chart-5))",
             },
         } satisfies ChartConfig
-
-        // const totalVisitors = useMemo(() => {
-        //     return chartData.reduce((acc, curr) => acc + curr.visitors, 0)
-        // }, [])
 
 
         return (

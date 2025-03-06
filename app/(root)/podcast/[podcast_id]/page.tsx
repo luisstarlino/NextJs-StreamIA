@@ -9,7 +9,6 @@
 // --- IMPORT'S
 //------------------------------------------------
 import PodcastDetailsPlayer from '@/components/PodcastDetailsPlayer';
-import LoaderSpinner from '@/components/LoaderSpinner';
 import { Id } from '@/convex/_generated/dataModel';
 import PodcastCard from '@/components/PodcastCard';
 import EmptyState from '@/components/EmptyState';

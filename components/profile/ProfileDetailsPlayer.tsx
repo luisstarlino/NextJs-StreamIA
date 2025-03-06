@@ -8,12 +8,9 @@
 //------------------------------------------------
 // --- IMPORT'S
 //------------------------------------------------
-import { PodcastDetailPlayerProps, ProfileDetailPlayerProps } from "@/types";
+import { ProfileDetailPlayerProps } from "@/types";
 import { useAudio } from '@/providers/AudioProvider';
-import { api } from "@/convex/_generated/api";
 import { useToast } from "@/hooks/use-toast";
-import { useRouter } from "next/navigation";
-import { useMutation } from "convex/react";
 import { useState } from "react";
 import Image from "next/image";
 import LoaderSpinner from "../LoaderSpinner";
@@ -25,12 +22,9 @@ const ProfileDetailPlayer = (p: ProfileDetailPlayerProps) => {
     //------------------------------------------------
     // --- CONST'S
     //------------------------------------------------
-    const deletePodcast = useMutation(api.podcasts.deletePodcast);
-    const [isDeleting, setIsDeleting] = useState(false);
     const [showMiniMenu, setShowMiniMenu] = useState(false);
     const { setAudio } = useAudio();
     const { toast } = useToast();
-    const router = useRouter();
 
     //------------------------------------------------
     // ON COPY FUNCTION

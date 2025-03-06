@@ -2,17 +2,12 @@
 // @LuisStarlino | 31/03/2024 23"53
 /***************************************************************************************/
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react";
-import { useParams, useRouter } from "next/navigation";
+import { Copy, Edit, MoreHorizontal } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { CellActionsCategory } from "@/types/tables/columnsCategory";
-// import { DEFAULT_MESSAGES } from "@/configs/Constants";
-// import { CellActionsColorProps, CellActionsFreteProps } from "@/types/TClient";
-// import axios from "axios";
-// import { AlertModal } from "@/components/dus/AlertModal";
-// import useLoadingPage from "@/hooks/use-loading-page";
+
 
 export const CellActionsCat: React.FC<CellActionsCategory> = ({ data }) => {
 
@@ -20,17 +15,8 @@ export const CellActionsCat: React.FC<CellActionsCategory> = ({ data }) => {
     // CONST'S
     //------------------------------------------------
     const router = useRouter();
-    const params = useParams();
-    const [open, setOpen] = useState(false);
     const url = `/system/category//${data?._id}`;
-    const [loading, setLoading] = useState(false);
-
-
-    // --- Se estiver aberto, vai fechar ele
-    // useEffect(() => {
-    //     if (loadingModal.isOpen) loadingModal.onClose();
-    // }, [])
-
+    
     //------------------------------------------------
     // CHANGE PAGE
     //------------------------------------------------

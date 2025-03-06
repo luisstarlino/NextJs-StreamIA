@@ -26,8 +26,8 @@ const GenerateThumbnail = ({ setImage, setImageStorageId, image, imagePrompt, se
   //------------------------------------------------
   // --- CONST'S
   //------------------------------------------------
-  const [isIAThumnail, setIsIAThumnail] = useState<Boolean>(false);
-  const [isImageLoading, setIsImageLoading] = useState<Boolean>(false);
+  const [isIAThumnail, setIsIAThumnail] = useState<boolean>(false);
+  const [isImageLoading, setIsImageLoading] = useState<boolean>(false);
   const imageRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
 

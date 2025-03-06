@@ -3,8 +3,6 @@ import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 
 import PodcastCard from '@/components/PodcastCard';
-import { Button } from '@/components/ui/button';
-import { podcastData } from '@/constants';
 import React, { useEffect } from 'react'
 import useLoadingPage from "@/hooks/use-loading";
 

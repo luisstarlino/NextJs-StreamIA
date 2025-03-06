@@ -8,14 +8,14 @@
 //------------------------------------------------
 // --- IMPORTS'S
 //------------------------------------------------
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage, } from "@/components/ui/form"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, } from "@/components/ui/form"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, } from "@/components/ui/select"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useForm } from "react-hook-form"
-import { string, z } from "zod"
+import { z } from "zod"
 import { cn } from "@/lib/utils"
 import { useEffect, useState } from "react"
 import { Textarea } from "@/components/ui/textarea"
@@ -24,7 +24,7 @@ import GenerateThumbnail from "@/components/GenerateThumbnail"
 import { Loader } from "lucide-react"
 import { Id } from "@/convex/_generated/dataModel"
 import { toast } from "@/hooks/use-toast"
-import { useAction, useMutation, useQuery } from "convex/react"
+import { useMutation, useQuery } from "convex/react"
 import { api } from "@/convex/_generated/api"
 import { useRouter } from "next/navigation";
 import useLoadingPage from "@/hooks/use-loading";
@@ -97,7 +97,7 @@ const CreatePodcast = () => {
       //const getCategoryById = useQuery(api.categories.getCategoryById, { id: "jd7fztr9cd3fxqxst1xwsmf9t5730cy4" });
 
       // --- Creating a podcast
-      const podcast = await createPodcast({
+      await createPodcast({
         title: data.title,
         description: data.description,
         audioUrl,

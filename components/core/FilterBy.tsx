@@ -12,7 +12,7 @@ import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, Command
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import React, { useState } from 'react';
 import { Button } from "../ui/button";
-import { Check, ChevronsUpDown, FilterIcon } from "lucide-react";
+import { Check, FilterIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { FilterByCategories } from "@/types";
 import LoaderSpinner from "../LoaderSpinner";

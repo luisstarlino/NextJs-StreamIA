@@ -5,11 +5,10 @@
 
 'use client';
 
-import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { SiAudiobookshelf } from "react-icons/si";
 import { BiSolidCategory } from "react-icons/bi";
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
 //------------------------------------------------
 // IMPORTS
 //------------------------------------------------

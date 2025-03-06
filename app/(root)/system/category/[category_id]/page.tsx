@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+
 /**
 * @LuisStarlino
 * Created AT: 16/11/2024 | 14:40
@@ -26,7 +28,7 @@ const formSchema = z.object({
     description: z.string().min(2),
 })
 
-const page = ({ params: { category_id } }: { params: { category_id: Id<"categories"> } }) => {
+const Page = ({ params: { category_id } }: { params: { category_id: Id<"categories"> } }) => {
 
     const router = useRouter();
 
@@ -69,7 +71,7 @@ const page = ({ params: { category_id } }: { params: { category_id: Id<"categori
             setIsSubmitting(true);
 
             if (category?._id) {
-                let reqSave = await updateCategory({
+                const reqSave = await updateCategory({
                     id: category?._id,
                     name: data.name,
                     description: data.description
@@ -163,4 +165,4 @@ const page = ({ params: { category_id } }: { params: { category_id: Id<"categori
     )
 }
 
-export default page;
+export default Page;

@@ -48,7 +48,7 @@ const LeftSideBar = () => {
                 {/* Routes */}
                 {sidebarLinks.map(({ route, label, imgURL }) => {
 
-                    let isActive = pathName === route || pathName.startsWith(`${route}/`)
+                    const isActive = pathName === route || pathName.startsWith(`${route}/`)
 
                     return (
                         <div onClick={()=> sendTo(route)} key={label}
