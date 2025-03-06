@@ -97,7 +97,7 @@ export interface AudioProps {
     audioUrl: string | undefined;
     author: string;
     imageUrl: string | undefined;
-    podcastId: Id<"podcasts">;
+    podcastId: Id<"podcasts"> | string;
 }
 
 export interface AudioContextType {
