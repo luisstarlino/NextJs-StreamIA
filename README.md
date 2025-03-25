@@ -53,7 +53,7 @@ Turn knowledge into audio and reach your audience with ease!
    ```bash
    npm install
    # or
-yarn install
+   yarn install
    ```  
 
 ### ▶️ Run
@@ -69,12 +69,15 @@ The project will be available at: [http://localhost:3000](http://localhost:3000)
 
 ## 📂 Structure  
 ```
-📁 src  
-├── 📂 components      # Componentes reutilizáveis  
-├── 📂 pages           # Páginas da aplicação  
-├── 📂 hooks           # Hooks customizados com zustand  
-├── 📂 styles          # Estilos globais com TailwindCSS  
-└── 📂 utils           # Funções utilitárias  
+📁 StreamIA
+├── 📂 app         
+├── 📂 components 
+├── 📂 constants  
+├── 📂 convex      
+├── 📂 hooks      
+├── 📂 lib        
+├── 📂 provider    
+└── 📂 types         
 ```  
 
 ---
