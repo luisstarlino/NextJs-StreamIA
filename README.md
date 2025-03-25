@@ -36,38 +36,38 @@ Turn knowledge into audio and reach your audience with ease!
 
 ---
 
-## ⚙️ Como Rodar o Projeto  
+## ⚙️ How to run the project    
 
-### 🧰 Pré-requisitos  
+### 🧰 Requirements 
 - Node.js v18+  
-- NPM ou Yarn  
+- NPM or Yarn  
 
-### 📥 Instalação  
-1. Clone o repositório:  
+### 📥 Installation
+1. Clone the repository:  
    ```bash
-   git clone https://github.com/seu-usuario/streamia.git
-   cd streamia
+   git clone [https://github.com/seu-usuario/streamia.git](https://github.com/luisstarlino/NextJs-StreamIA)
+   cd NextJs-StreamIA
    ```  
 
-2. Instale as dependências:  
+2. Install packages:  
    ```bash
    npm install
-   # ou
+   # or
 yarn install
    ```  
 
-### ▶️ Execução  
-Inicie o servidor de desenvolvimento:  
+### ▶️ Run
+Start the development server:  
 ```bash
 npm run dev
 # ou
 yarn dev
 ```  
-O projeto estará disponível em: [http://localhost:3000](http://localhost:3000)  
+The project will be available at: [http://localhost:3000](http://localhost:3000)  
 
 ---
 
-## 📂 Estrutura do Projeto  
+## 📂 Structure  
 ```
 📁 src  
 ├── 📂 components      # Componentes reutilizáveis  
@@ -79,28 +79,20 @@ O projeto estará disponível em: [http://localhost:3000](http://localhost:3000)
 
 ---
 
-## ✨ Contribuições  
+## ✨ Contributions  
 
-Contribuições são bem-vindas! Siga os passos abaixo:  
-1. Faça um fork do repositório.  
-2. Crie uma branch para sua feature: `git checkout -b minha-feature`.  
-3. Envie suas alterações: `git push origin minha-feature`.  
-4. Abra um Pull Request.  
-
----
-
-## 📄 Licença  
-
-Este projeto está licenciado sob a **MIT License**. Consulte o arquivo [LICENSE](./LICENSE) para mais informações.  
+Contributions are welcome! Follow the steps below:  
+1. Fork the repository.  
+2. Create a branch for your feature: `git checkout -b my-feature`
+3. Send your changes: `git push origin my-feature`. 
+4. Send a Pull Request
 
 ---
 
-## 🛡️ Contato  
-Para dúvidas ou sugestões, entre em contato:  
-**Nome do Desenvolvedor**  
-- 📧 Email: [seuemail@example.com](mailto:seuemail@example.com)  
-- 💼 LinkedIn: [Seu LinkedIn](https://linkedin.com/in/seuusuario)  
+## 🛡️ Contact    
+If you have any questions or suggestions, please get in touch:
+**Luis Starlino**  
+- 📧 Email: [luis.guilherme009@gmail.com](mailto:luis.guilherme009@gmail.com)  
+- 💼 LinkedIn: [Luis Starlino]([https://www.linkedin.com/in/luis-starlino/])  
 
 ---  
-
-> 🎉 Desenvolvido com 💙 e tecnologias modernas!
