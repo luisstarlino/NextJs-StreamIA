@@ -36,48 +36,48 @@ Turn knowledge into audio and reach your audience with ease!
 
 ---
 
-## ⚙️ How to run the project    
+## ⚙️ How to Run the Project  
 
-### 🧰 Requirements 
+### 🧰 Prerequisites  
 - Node.js v18+  
 - NPM or Yarn  
 
-### 📥 Installation
+### 📥 Instalation  
 1. Clone the repository:  
    ```bash
-   git clone [https://github.com/seu-usuario/streamia.git](https://github.com/luisstarlino/NextJs-StreamIA)
-   cd NextJs-StreamIA
-   ```  
+   git clone https://github.com/seu-usuario/streamia.git
+   cd streamia
+   ``` 
 
-2. Install packages:  
+2. Install Packages:  
    ```bash
    npm install
-   # or
+   # or 
    yarn install
    ```  
 
 ### ▶️ Run
-Start the development server:  
+Init your developer server:  
 ```bash
 npm run dev
-# ou
+# or
 yarn dev
 ```  
-The project will be available at: [http://localhost:3000](http://localhost:3000)  
+The project runs in: [http://localhost:3000](http://localhost:3000)  
 
 ---
 
-## 📂 Structure  
+## 📂 Project Structure  
 ```
-📁 StreamIA
-├── 📂 app         
-├── 📂 components 
-├── 📂 constants  
-├── 📂 convex      
-├── 📂 hooks      
-├── 📂 lib        
-├── 📂 provider    
-└── 📂 types         
+📁 src  
+├── 📂 app           # Application pages
+├── 📂 components    # Reusable components  
+├── 📂 constants     # Dummy temporary data
+├── 📂 convex        # Backend Proxy
+├── 📂 hooks         # Customized hooks with zustand and toast
+├── 📂 lib           # Utility functions 
+├── 📂 providers     # Global audio, auth, loading and Toater providers
+├── 📂 types         # Global types 
 ```  
 
 ---
@@ -86,16 +86,22 @@ The project will be available at: [http://localhost:3000](http://localhost:3000)
 
 Contributions are welcome! Follow the steps below:  
 1. Fork the repository.  
-2. Create a branch for your feature: `git checkout -b my-feature`
-3. Send your changes: `git push origin my-feature`. 
-4. Send a Pull Request
+2. Create a branch for your feature: `git checkout -b my-feature`.  
+3. Submit your changes: `git push origin my-feature`.  
+4. Open a Pull Request.  
 
 ---
 
-## 🛡️ Contact    
-If you have any questions or suggestions, please get in touch:
-**Luis Starlino**  
+## 📄 License  
+
+This project is licensed under the **MIT License**. See the [LICENSE](./LICENSE) file for more information.  
+
+---
+
+## 🛡️ Contact  
+For questions or suggestions, please contact us:  
+**Developer Name**  
 - 📧 Email: [luis.guilherme009@gmail.com](mailto:luis.guilherme009@gmail.com)  
-- 💼 LinkedIn: [Luis Starlino]([https://www.linkedin.com/in/luis-starlino/])  
+- 💼 LinkedIn: [Luis Starlino](https://www.linkedin.com/in/luis-starlino/)  
 
 ---  

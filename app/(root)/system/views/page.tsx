@@ -17,15 +17,22 @@ import { DataTable } from "@/components/table/Databable";
 import { columnsViews } from "@/types/tables/columnsViews";
 import { ChartContainer, type ChartConfig, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from "@/components/ui/chart"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import useLoadingPage from "@/hooks/use-loading";
+import { useEffect } from "react";
 
 const ViewsListPage = () => {
 
     // ===== CONSTANTS =====
     const router = useRouter();
+    const loadingController = useLoadingPage();
     const dataViews = useQuery(api.podcasts.getAllPodcastsViews);
 
     // ===== LOADING WHEN GET DATA 
     if (!dataViews) return <LoaderSpinner />;
+
+    useEffect(() => {
+        if (loadingController.isOpen) return loadingController.onClose();
+    }, []);
     console.log(dataViews);
 
     // ===== CHARTS =====
