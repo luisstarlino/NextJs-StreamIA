@@ -14,11 +14,11 @@ export const sidebarLinks = [
     route: "/system",
     label: "System",
   },
-  {
-    imgURL: "/icons/microphone.svg",
-    route: "/create-podcast",
-    label: "Create Podcast",
-  },
+  // {
+  //   imgURL: "/icons/microphone.svg",
+  //   route: "/create-podcast",
+  //   label: "Create Podcast",
+  // },
   
 ];
 

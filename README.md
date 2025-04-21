@@ -36,71 +36,72 @@ Turn knowledge into audio and reach your audience with ease!
 
 ---
 
-## ⚙️ Como Rodar o Projeto  
+## ⚙️ How to Run the Project  
 
-### 🧰 Pré-requisitos  
+### 🧰 Prerequisites  
 - Node.js v18+  
-- NPM ou Yarn  
+- NPM or Yarn  
 
-### 📥 Instalação  
-1. Clone o repositório:  
+### 📥 Instalation  
+1. Clone the repository:  
    ```bash
    git clone https://github.com/seu-usuario/streamia.git
    cd streamia
-   ```  
+   ``` 
 
-2. Instale as dependências:  
+2. Install Packages:  
    ```bash
    npm install
-   # ou
-yarn install
+   # or
+   yarn install
    ```  
 
-### ▶️ Execução  
-Inicie o servidor de desenvolvimento:  
+### ▶️ Run
+Init your developer server:  
 ```bash
 npm run dev
-# ou
+# or
 yarn dev
 ```  
-O projeto estará disponível em: [http://localhost:3000](http://localhost:3000)  
+The project runs in: [http://localhost:3000](http://localhost:3000)  
 
 ---
 
-## 📂 Estrutura do Projeto  
+## 📂 Project Structure  
 ```
 📁 src  
-├── 📂 components      # Componentes reutilizáveis  
-├── 📂 pages           # Páginas da aplicação  
-├── 📂 hooks           # Hooks customizados com zustand  
-├── 📂 styles          # Estilos globais com TailwindCSS  
-└── 📂 utils           # Funções utilitárias  
+├── 📂 app           # Application pages
+├── 📂 components    # Reusable components  
+├── 📂 constants     # Dummy temporary data
+├── 📂 convex        # Backend Proxy
+├── 📂 hooks         # Customized hooks with zustand and toast
+├── 📂 lib           # Utility functions 
+├── 📂 providers     # Global audio, auth, loading and Toater providers
+├── 📂 types         # Global types 
 ```  
 
 ---
 
-## ✨ Contribuições  
+## ✨ Contributions  
 
-Contribuições são bem-vindas! Siga os passos abaixo:  
-1. Faça um fork do repositório.  
-2. Crie uma branch para sua feature: `git checkout -b minha-feature`.  
-3. Envie suas alterações: `git push origin minha-feature`.  
-4. Abra um Pull Request.  
-
----
-
-## 📄 Licença  
-
-Este projeto está licenciado sob a **MIT License**. Consulte o arquivo [LICENSE](./LICENSE) para mais informações.  
+Contributions are welcome! Follow the steps below:  
+1. Fork the repository.  
+2. Create a branch for your feature: `git checkout -b my-feature`.  
+3. Submit your changes: `git push origin my-feature`.  
+4. Open a Pull Request.  
 
 ---
 
-## 🛡️ Contato  
-Para dúvidas ou sugestões, entre em contato:  
-**Nome do Desenvolvedor**  
-- 📧 Email: [seuemail@example.com](mailto:seuemail@example.com)  
-- 💼 LinkedIn: [Seu LinkedIn](https://linkedin.com/in/seuusuario)  
+## 📄 License  
+
+This project is licensed under the **MIT License**. See the [LICENSE](./LICENSE) file for more information.  
+
+---
+
+## 🛡️ Contact  
+For questions or suggestions, please contact us:  
+**Developer Name**  
+- 📧 Email: [luis.guilherme009@gmail.com](mailto:luis.guilherme009@gmail.com)  
+- 💼 LinkedIn: [Luis Starlino](https://www.linkedin.com/in/luis-starlino/)  
 
 ---  
-
-> 🎉 Desenvolvido com 💙 e tecnologias modernas!
