@@ -52,7 +52,7 @@ Turn knowledge into audio and reach your audience with ease!
 2. Install Packages:  
    ```bash
    npm install
-   # or
+   # or 
    yarn install
    ```  
 

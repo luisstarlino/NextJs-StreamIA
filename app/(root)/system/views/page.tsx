@@ -26,14 +26,14 @@ const ViewsListPage = () => {
     const router = useRouter();
     const loadingController = useLoadingPage();
     const dataViews = useQuery(api.podcasts.getAllPodcastsViews);
+    
+    useEffect(() => {
+        if (loadingController.isOpen) return loadingController.onClose();
+    }, []);
 
     // ===== LOADING WHEN GET DATA 
     if (!dataViews) return <LoaderSpinner />;
 
-    useEffect(() => {
-        if (loadingController.isOpen) return loadingController.onClose();
-    }, []);
-    console.log(dataViews);
 
     // ===== CHARTS =====
     const renderViewByCategory = () => {
