@@ -1,10 +1,20 @@
+"use client";
+
+import useLoadingPage from '@/hooks/use-loading';
+import React, { useEffect } from 'react'
 import { SignIn } from '@clerk/nextjs'
-import React from 'react'
 
 const page = () => {
+
+  useEffect(() => {
+    if (loadingController.isOpen) return loadingController.onClose();
+  }, []);
+
+  const loadingController = useLoadingPage();
+
   return (
     <div className='flex-center glassmorphism-auth h-screen w-full'>
-        <SignIn/>
+      <SignIn />
     </div>
   )
 }
