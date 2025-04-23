@@ -6,6 +6,7 @@ import { SignIn } from '@clerk/nextjs'
 
 const Page = () => {
 
+  /// --- Disable loading
   useEffect(() => {
     if (loadingController.isOpen) return loadingController.onClose();
   }, []);
