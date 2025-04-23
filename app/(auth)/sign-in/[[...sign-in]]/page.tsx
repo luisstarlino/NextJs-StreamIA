@@ -4,7 +4,7 @@ import useLoadingPage from '@/hooks/use-loading';
 import React, { useEffect } from 'react'
 import { SignIn } from '@clerk/nextjs'
 
-const page = () => {
+const Page = () => {
 
   useEffect(() => {
     if (loadingController.isOpen) return loadingController.onClose();
@@ -19,4 +19,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page;
